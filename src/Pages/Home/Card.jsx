@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Card = ({ chef }) => {
-  const { experience, picture, name, no_of_recipes, likes } = chef;
+  const { id, experience, picture, name, no_of_recipes, likes } = chef;
   return (
     <>
       <div className="overflow-hidden rounded shadow-lg">
@@ -26,12 +27,14 @@ const Card = ({ chef }) => {
           </p>
         </div>
         <div className="px-6 pt-4 pb-2">
-          <button
-            type="button"
-            className="text-white bg-orange-600 hover:bg-orange-400 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-          >
-            View Recipes
-          </button>
+          <Link to={`/${id}`}>
+            <button
+              type="button"
+              className="text-white bg-orange-600 hover:bg-orange-400 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+            >
+              View Recipes
+            </button>
+          </Link>
         </div>
       </div>
     </>
