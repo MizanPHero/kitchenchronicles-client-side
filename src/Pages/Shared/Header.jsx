@@ -9,7 +9,7 @@ const Header = () => {
       <div className="relative flex items-center justify-between">
         {/* Logo Section */}
         <Link to="/" className="inline-flex items-center flex-1">
-          <span className="ml-2 text-xl font-bold tracking-wide text-gray-800">
+          <span className="ml-2 text-2xl font-bold tracking-wide text-gray-800">
             Kitchen Chronicles
           </span>
         </Link>
