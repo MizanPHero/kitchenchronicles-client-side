@@ -10,11 +10,13 @@ import {
   signOut,
 } from "firebase/auth";
 import app from "../Firebase/firebase.config";
+import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
+
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -47,7 +49,6 @@ const AuthProvider = ({ children }) => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         const loggedInUser = result.user;
-        console.log(loggedInUser);
         setUser(loggedInUser);
       })
       .catch((error) => {
@@ -58,7 +59,6 @@ const AuthProvider = ({ children }) => {
     signInWithPopup(auth, githubProvider)
       .then((result) => {
         const loggedInUser = result.user;
-        console.log(loggedInUser);
         setUser(loggedInUser);
       })
       .catch((error) => {

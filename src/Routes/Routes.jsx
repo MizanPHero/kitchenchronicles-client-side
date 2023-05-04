@@ -6,6 +6,7 @@ import ChefDetails from "../Pages/ChefDetails/ChefDetails";
 import Login from "../Pages/LoginRegistration/Login";
 import Registration from "../Pages/LoginRegistration/Registration";
 import Blog from "../Pages/Blog/Blog";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
