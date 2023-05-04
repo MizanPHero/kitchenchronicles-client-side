@@ -9,7 +9,7 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="relative pt-8 pb-6 my-container bg-blueGray-200">
+    <footer className="relative pt-4 pb-6 my-container bg-blueGray-200">
       <div className="container px-4 mx-auto">
         <div className="flex flex-wrap text-left lg:text-left">
           <div className="w-full px-4 lg:w-6/12">
@@ -143,10 +143,7 @@ const Footer = () => {
                 Kitchen Chronicles by
               </a>
               <br />
-              <a
-                href=""
-                className="text-blueGray-500 hover:text-blueGray-800"
-              >
+              <a href="" className="text-blueGray-500 hover:text-blueGray-800">
                 Mizanur Rahman
               </a>
               .
