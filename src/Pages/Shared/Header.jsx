@@ -1,8 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Bars3BottomRightIcon, XMarkIcon } from "@heroicons/react/24/solid";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
+  
+  const handleLogout = () => {
+    logOut()
+        .then(result => { })
+        .catch(error => console.error(error));
+}
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
@@ -15,7 +24,7 @@ const Header = () => {
         </Link>
 
         {/* Nav Items Section */}
-        
+
         <ul className="items-center hidden space-x-8 lg:flex">
           <li>
             <NavLink
@@ -34,19 +43,31 @@ const Header = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink
-              to="/login"
-              className={({ isActive }) => (isActive ? "active" : "default")}
+            {user ? (
+             <div className="flex">
+              <button
+              onClick={handleLogout}
+              className="default"
             >
-              Login
-            </NavLink>
+              Sign Out
+            </button>
+              <img
+                className="w-8 h-8 mr-5 rounded-full lg:ml-7"
+                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                alt=""
+              />
+             </div>
+            ) : (
+              <NavLink
+                to="/login"
+                className={({ isActive }) => (isActive ? "active" : "default")}
+              >
+                Login
+              </NavLink>
+            )}
           </li>
         </ul>
-        <img
-          className="w-8 h-8 mr-5 rounded-full lg:ml-7"
-          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-          alt=""
-        />
+
         {/* Mobile Navbar Section */}
         <div className="lg:hidden">
           {/* Dropdown Open Button */}
