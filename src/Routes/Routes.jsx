@@ -18,12 +18,12 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>,
-                loader: ()=> fetch('http://127.0.0.1:5000/')
+                loader: ()=> fetch('https://the-culinary-artist-server-mizanphero.vercel.app/')
             },
             {
                 path: '/:id',
                 element: <ChefDetails></ChefDetails>,
-                loader: ({params}) => fetch(`http://127.0.0.1:5000/${params.id}`)
+                loader: ({params}) => fetch(`https://the-culinary-artist-server-mizanphero.vercel.app/${params.id}`)
             },
             {
                 path: '/login',

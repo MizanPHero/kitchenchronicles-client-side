@@ -5,7 +5,6 @@ import { faStar, faStarHalf } from '@fortawesome/free-solid-svg-icons';
 
 function StarRating(props) {
   const rating = props.rating;
-  console.log(rating);
   let stars = [];
 
   for (let i = 0; i < 5; i++) {
