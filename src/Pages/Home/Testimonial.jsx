@@ -1,11 +1,17 @@
 /* eslint-disable react/jsx-key */
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigation } from "react-router-dom";
 import Card from "./Card";
+import Spinner from "./Spinner";
 
 const Testimonial = () => {
-  const data = useLoaderData()
-  console.log(data);
+  const data = useLoaderData();
+  const navigation = useNavigation();
+
+  if (navigation.state === "loading") {
+    return <Spinner></Spinner>;
+  }
+
   return (
     <>
       <div className="flex justify-center mt-16">
@@ -24,11 +30,9 @@ const Testimonial = () => {
             </div>
           </div>
           <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
-            {
-              data.map(chef => (
-                <Card key={chef.id} chef={chef}></Card>
-              ))
-            }
+            {data.map((chef) => (
+              <Card key={chef.id} chef={chef}></Card>
+            ))}
           </div>
         </div>
       </div>

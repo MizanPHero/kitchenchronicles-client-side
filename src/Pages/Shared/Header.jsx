@@ -6,12 +6,12 @@ import { AuthContext } from "../../Provider/AuthProvider";
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
   console.log(user);
-  
+
   const handleLogout = () => {
     logOut()
-        .then(result => { })
-        .catch(error => console.error(error));
-}
+      .then((result) => {})
+      .catch((error) => console.error(error));
+  };
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
@@ -45,19 +45,16 @@ const Header = () => {
           </li>
           <li>
             {user ? (
-             <div className="flex">
-              <button
-              onClick={handleLogout}
-              className="default"
-            >
-              Sign Out
-            </button>
-              <img
-                className="w-8 h-8 mr-5 rounded-full lg:ml-7"
-                src={user.photoURL}
-                alt=""
-              />
-             </div>
+              <div className="flex">
+                <button onClick={handleLogout} className="default">
+                  Sign Out
+                </button>
+                <img
+                  className="w-8 h-8 mr-5 rounded-full lg:ml-7"
+                  src={user.photoURL}
+                  alt=""
+                />
+              </div>
             ) : (
               <NavLink
                 to="/login"
@@ -119,12 +116,27 @@ const Header = () => {
                       </Link>
                     </li>
                     <li>
-                      <Link
-                        to="/login"
-                        className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-blue-400"
-                      >
-                        Login
-                      </Link>
+                      {user ? (
+                        <div className="">
+                          <button onClick={handleLogout} className="mb-4 default">
+                            Sign Out
+                          </button>
+                          <img
+                            className="w-8 h-8 mr-5 rounded-full lg:ml-7"
+                            src={user.photoURL}
+                            alt=""
+                          />
+                        </div>
+                      ) : (
+                        <NavLink
+                          to="/login"
+                          className={({ isActive }) =>
+                            isActive ? "active" : "default"
+                          }
+                        >
+                          Login
+                        </NavLink>
+                      )}
                     </li>
                   </ul>
                 </nav>

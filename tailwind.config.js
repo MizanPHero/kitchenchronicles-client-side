@@ -9,6 +9,7 @@ export default {
       color: {}
     },
   },
-  plugins: [],
+  // eslint-disable-next-line no-undef
+  plugins: [require("daisyui")],
 }
 

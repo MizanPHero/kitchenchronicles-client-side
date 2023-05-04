@@ -88,6 +88,7 @@ const Registration = () => {
                 type="password"
                 className="w-full p-4 text-sm border-2 rounded-full shadow-md focus-visible:outline-none focus:border-orange-500 pe-12 border-gray-50"
                 placeholder="Enter password"
+                required
               />
             </div>
 

@@ -1,9 +1,18 @@
 /* eslint-disable react/prop-types */
-import React from "react";
+import React, { useState } from "react";
 import StarRating from "./StarRating";
+import { toast } from "react-hot-toast";
+
 
 const RecipeCard = ({ recipe }) => {
-  console.log(recipe);
+  
+  const [clicked, setClicked] = useState(false);
+
+  const handleClick = () => {
+    setClicked(true);
+    toast.success("Added to Favorite")
+  };
+
   return (
     <div className="overflow-hidden border rounded-lg shadow-md">
       {/* <img className="w-full" src={recipe.image} alt={recipe.name} /> */}
@@ -35,9 +44,9 @@ const RecipeCard = ({ recipe }) => {
         </div>
         <div className="flex justify-around mt-6">
         <StarRating rating={recipe.rating} />
-        <button
+        <button onClick={handleClick} disabled={clicked}
               type="button"
-              className="text-white bg-orange-600 hover:bg-orange-400 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+              className={clicked ? "text-white bg-orange-400 focus:outline-none focus:ring-4 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2" : "text-white bg-orange-600 hover:bg-orange-400 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"}
             >
               Favorite
             </button>
