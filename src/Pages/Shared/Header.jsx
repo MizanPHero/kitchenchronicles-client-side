@@ -33,6 +33,14 @@ const Header = () => {
               Blog
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              to="/login"
+              className={({ isActive }) => (isActive ? "active" : "default")}
+            >
+              Login
+            </NavLink>
+          </li>
         </ul>
         <img
           className="w-8 h-8 mr-5 rounded-full lg:ml-7"
@@ -86,6 +94,14 @@ const Header = () => {
                         className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-blue-400"
                       >
                         Blog
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/login"
+                        className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-blue-400"
+                      >
+                        Login
                       </Link>
                     </li>
                   </ul>
