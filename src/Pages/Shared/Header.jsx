@@ -5,6 +5,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
+  console.log(user);
   
   const handleLogout = () => {
     logOut()
@@ -53,7 +54,7 @@ const Header = () => {
             </button>
               <img
                 className="w-8 h-8 mr-5 rounded-full lg:ml-7"
-                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                src={user.photoURL}
                 alt=""
               />
              </div>

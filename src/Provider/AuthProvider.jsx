@@ -1,17 +1,23 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import {
+  GithubAuthProvider,
+  GoogleAuthProvider,
   createUserWithEmailAndPassword,
   getAuth,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
 } from "firebase/auth";
 import app from "../Firebase/firebase.config";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
+const githubProvider = new GithubAuthProvider();
 
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState({name: "mizan"});
+  const [user, setUser] = useState(null);
 
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -21,16 +27,52 @@ const AuthProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  const logOut=()=> {
+  const logOut = () => {
     return signOut(auth);
-  }
+  };
+
+  // observer user auth state
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+
+    // stop observing while unmounting
+    return () => {
+      return unsubscribe();
+    };
+  }, []);
+
+  const googleSignIn = () => {
+    signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        const loggedInUser = result.user;
+        console.log(loggedInUser);
+        setUser(loggedInUser);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  const gitHubSignIn = () => {
+    signInWithPopup(auth, githubProvider)
+      .then((result) => {
+        const loggedInUser = result.user;
+        console.log(loggedInUser);
+        setUser(loggedInUser);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const authInfo = {
     user,
     createUser,
     signIn,
-    logOut
-    
+    logOut,
+    googleSignIn,
+    gitHubSignIn
   };
 
   return (
