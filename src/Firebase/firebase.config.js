@@ -4,15 +4,17 @@ import { initializeApp } from "firebase/app";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+console.log('this is for testing api', import.meta.env.VITE_APIKEY);
+
 const firebaseConfig = {
-  apiKey: "AIzaSyCo2dVQzv4bRK3FidOQ_aTOZlRMeDl20GY",
-  authDomain: "kitchen-chronicles-7e56c.firebaseapp.com",
-  projectId: "kitchen-chronicles-7e56c",
-  storageBucket: "kitchen-chronicles-7e56c.appspot.com",
-  messagingSenderId: "87307524904",
-  appId: "1:87307524904:web:839bb11f64fe15bc724e1d"
+  apiKey: import.meta.env.VITE_APIKEY,
+  authDomain: import.meta.env.VITE_AUTHDOMAIN,
+  projectId: import.meta.env.VITE_PROJECTID,
+  storageBucket: import.meta.env.VITE_STORAGEBUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGINGSENDERID,
+  appId: import.meta.env.VITE_APPID,
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export default app
+export default app;
