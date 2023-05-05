@@ -23,7 +23,7 @@ const Login = () => {
     signIn(email, password)
       .then((result) => {
         const loggedUser = result.user;
-        navigate(from, { replace: true })
+        navigate(from, { replace: true });
         console.log(loggedUser);
         form.reset();
       })
@@ -34,10 +34,26 @@ const Login = () => {
   };
 
   const handleGoogleSignIn = () => {
-    googleSignIn();
+    googleSignIn()
+    .then((result) => {
+      const loggedInUser = result.user;
+      navigate(from, { replace: true });
+      console.log(loggedInUser);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   };
   const handleGithubSignIn = () => {
-    gitHubSignIn();
+    gitHubSignIn()
+    .then((result) => {
+      const loggedInUser = result.user;
+      navigate(from, { replace: true });
+      console.log(loggedInUser);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   };
 
   return (

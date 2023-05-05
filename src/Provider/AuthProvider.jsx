@@ -32,7 +32,7 @@ const AuthProvider = ({ children }) => {
   };
 
   const logOut = () => {
-    setLoading(true); 
+    setLoading(true);
     return signOut(auth);
   };
 
@@ -50,25 +50,13 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const googleSignIn = () => {
-    signInWithPopup(auth, googleProvider)
-      .then((result) => {
-        const loggedInUser = result.user;
-        setUser(loggedInUser);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    setLoading(true);
+    return signInWithPopup(auth, googleProvider);
   };
   const gitHubSignIn = () => {
-    signInWithPopup(auth, githubProvider)
-      .then((result) => {
-        const loggedInUser = result.user;
-        setUser(loggedInUser);
-        setLoading(true);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    setLoading(true)
+    return signInWithPopup(auth, githubProvider)
+      
   };
 
   const authInfo = {
@@ -78,7 +66,7 @@ const AuthProvider = ({ children }) => {
     logOut,
     googleSignIn,
     gitHubSignIn,
-    loading
+    loading,
   };
 
   return (
