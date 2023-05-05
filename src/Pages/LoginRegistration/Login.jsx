@@ -1,13 +1,16 @@
 import React, { useContext, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle, faGithub, faGit } from "@fortawesome/free-brands-svg-icons";
-
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 
 const Login = () => {
   const { signIn, googleSignIn, gitHubSignIn } = useContext(AuthContext);
   const [error, setError] = useState("");
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -20,6 +23,7 @@ const Login = () => {
     signIn(email, password)
       .then((result) => {
         const loggedUser = result.user;
+        navigate(from, { replace: true })
         console.log(loggedUser);
         form.reset();
       })
@@ -34,7 +38,7 @@ const Login = () => {
   };
   const handleGithubSignIn = () => {
     gitHubSignIn();
-  }
+  };
 
   return (
     <div>
@@ -83,7 +87,10 @@ const Login = () => {
                 Sign in with Google
               </button>
 
-              <button onClick={handleGithubSignIn} className="flex items-center justify-center w-full max-w-xs px-4 py-2 mx-auto font-medium text-white bg-gray-800 border border-transparent rounded-full shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+              <button
+                onClick={handleGithubSignIn}
+                className="flex items-center justify-center w-full max-w-xs px-4 py-2 mx-auto font-medium text-white bg-gray-800 border border-transparent rounded-full shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+              >
                 <svg
                   className="w-6 h-6 mr-2 text-white"
                   fill="currentColor"

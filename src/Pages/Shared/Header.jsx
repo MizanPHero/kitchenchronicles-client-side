@@ -50,7 +50,7 @@ const Header = () => {
                 </button>
                 <img
                   className="w-8 h-8 mr-5 rounded-full lg:ml-7"
-                  src={user.photoURL}
+                  src={user?.photoURL}
                   alt=""
                 />
               </div>
@@ -122,7 +122,7 @@ const Header = () => {
                           </button>
                           <img
                             className="w-8 h-8 mr-5 rounded-full lg:ml-7"
-                            src={user.photoURL}
+                            src={user?.photoURL}
                             alt=""
                           />
                         </div>

@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import StarRating from "./StarRating";
 import { toast } from "react-hot-toast";
+import LazyLoad from "react-lazy-load";
 
 
 const RecipeCard = ({ recipe }) => {
@@ -17,7 +18,7 @@ const RecipeCard = ({ recipe }) => {
     <div className="overflow-hidden border rounded-lg shadow-md">
       {/* <img className="w-full" src={recipe.image} alt={recipe.name} /> */}
       <div className="overflow-hidden h-80">
-          <img className="object-cover object-center w-full h-full" src={recipe.image} alt={recipe.name} />
+          <LazyLoad height={320}><img className="object-cover object-center w-full h-full" src={recipe.image} alt={recipe.name} /></LazyLoad>
         </div>
 
       <div className="p-4">

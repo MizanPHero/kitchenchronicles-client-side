@@ -1,10 +1,16 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../Provider/AuthProvider';
 import { Navigate, useLocation } from 'react-router-dom';
+import Spinner from '../Pages/Home/Spinner';
 
+// eslint-disable-next-line react/prop-types
 const PrivateRoute = ({children}) => {
-    const {user}= useContext(AuthContext);
+    const {user, loading}= useContext(AuthContext);
     const location = useLocation();
+
+    if (loading) {
+        return <Spinner></Spinner>
+    }
 
     if(user){
         return children;

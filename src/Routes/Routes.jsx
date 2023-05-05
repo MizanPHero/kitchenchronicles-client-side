@@ -22,7 +22,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/:id",
-        element: <ChefDetails></ChefDetails>,
+        element: <PrivateRoute><ChefDetails></ChefDetails></PrivateRoute>,
         loader: ({ params }) =>
           fetch(
             `https://the-culinary-artist-server-mizanphero.vercel.app/${params.id}`

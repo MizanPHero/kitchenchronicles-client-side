@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import { Link } from "react-router-dom";
+import LazyLoad from "react-lazy-load";
 
 const Card = ({ chef }) => {
   const { id, experience, picture, name, no_of_recipes, likes } = chef;
@@ -9,7 +10,9 @@ const Card = ({ chef }) => {
     <>
       <div className="overflow-hidden rounded shadow-lg">
         <div className="h-64 overflow-hidden">
-          <img className="object-center w-full" src={picture} alt="Chef" />
+          <LazyLoad height={256}>
+            <img className="object-center w-full" src={picture} alt="Chef" />
+          </LazyLoad>
         </div>
         <div className="px-6 py-4">
           <div className="mb-2 text-xl font-bold text-gray-800">{name}</div>
